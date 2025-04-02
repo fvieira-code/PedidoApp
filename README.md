@@ -3,13 +3,13 @@ Aplicação cliente usando Spring Boot 3.1.2, Spring Cloud, Java 17 e outras tec
 
 # PASSOS PARA SUBIR A APLICAÇÃO:
 1. Criar os pacotes :
-   $ cd [diretório-raiz]
-   $ mvn clea install
-   $ mvn spring-boot:run
+   - $ cd [diretório-raiz]
+   - $ mvn clea install
+   - $ mvn spring-boot:run
 
-2. Endpoints:
+3. Endpoints:
       Porta das aplicação: 8081
-      # Ele irá se comunicar com o server através das portas 8078 e 8079 se a anterior estiver fora.
+      ### Ele irá se comunicar com o server através das portas 8078 e 8079 se a anterior estiver fora.
 
 2.1. Consulta todos :
 [GET]   http://localhost:8081/api/pedidos
