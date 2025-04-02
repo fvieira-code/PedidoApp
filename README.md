@@ -19,7 +19,9 @@ Aplicação cliente usando Spring Boot 3.1.2, Spring Cloud, Java 17 e outras tec
 
 2.3. Inseri pedido:
 [POST] http://localhost:8081/api/pedidos
+
 Body - raw - JSON:
+```JSON
 {
     "dataPedido": "2025-04-01",
     "situacaoPedido": "ABERTO",
@@ -52,3 +54,5 @@ Body - raw - JSON:
         }
     ]
 }
+
+```
