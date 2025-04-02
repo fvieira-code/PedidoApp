@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 @FeignClient(
         name="pedido-gateway",
-        url = "http://localhost:8080/api",
+        url = "http://localhost:8079/api",
         fallback = PedidoServerAlternate.class)
 public interface PedidoGateway extends PedidoService {
 }
