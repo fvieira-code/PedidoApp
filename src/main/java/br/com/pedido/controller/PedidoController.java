@@ -2,6 +2,7 @@ package br.com.pedido.controller;
 
 import br.com.pedido.api.PedidoService;
 import br.com.pedido.client.PedidoGateway;
+import br.com.pedido.client.PedidoGatewayAlternate;
 import br.com.pedido.model.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -21,6 +22,9 @@ public class PedidoController implements PedidoService {
     private PedidoGateway pedidoGateway;
 
     @Autowired
+    private PedidoGatewayAlternate pedidoGatewayAlternate;
+
+    @Autowired
     public PedidoController(PedidoGateway pedidoGateway) {
         this.pedidoGateway = pedidoGateway;
     }
@@ -28,17 +32,29 @@ public class PedidoController implements PedidoService {
     @Override
     @GetMapping("/pedidos")
     public List<Pedido> getAllPedidos() {
-        return pedidoGateway.getAllPedidos();
+        try {
+            return pedidoGateway.getAllPedidos();
+        } catch (Exception e){
+            return pedidoGatewayAlternate.getAllPedidos();
+        }
     }
 
     @Override
     @GetMapping("/pedidos/{id}")
     public Pedido getPedido(@PathVariable("id") String id) {
-        return pedidoGateway.getPedido(id);
+        try {
+            return pedidoGateway.getPedido(id);
+        } catch (Exception e){
+            return pedidoGatewayAlternate.getPedido(id);
+        }
     }
 
     @PostMapping("/pedidos")
     public Pedido postPedido(@RequestBody Pedido pedido) {
-        return pedidoGateway.postPedido(pedido);
+        try {
+            return pedidoGateway.postPedido(pedido);
+        } catch (Exception e){
+            return pedidoGatewayAlternate.postPedido(pedido);
+        }
     }
 }
